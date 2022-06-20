@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run '.\house - functions_added.py'
+web: sh setup.sh && streamlit run ./house_functions_added.py
