@@ -1,267 +1,136 @@
+Kings County Hose Sales    
 
-<html>
-	<head>
-		<title>Kings County Hose Sales</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+[**House Sales in King County, USA** by Fulvio](index.html)
 
+Insights on real estate for purchase and resale
+===============================================
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+This project was carried out using data available on the [kaggle](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction) website. The objective is to identify good deals on properties for purchase with subsequent profit.
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+The dataset comprehends house sales prices for King County, Seattle, USA. It includes homes sold between May 2014 and May 2015.
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><strong>House Sales in King County, USA</strong> by Fulvio</a>
-									<ul class="icons">
-										<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li> -->
-									</ul>
-								</header>
+If you want to jump right to the heroku dashboard with suggestions for deals, please click here..
 
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Insights on real estate for purchase and resale</h1>
-											<p>This project was carried out using data available on the <a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction"> kaggle</a> website. The objective is to identify good deals on properties for purchase with subsequent profit.</p>
-											<p>The dataset comprehends house sales prices  for King County, Seattle, USA. It includes homes sold between May 2014 and May 2015.</p>
-											<p>If you want to jump right to the heroku dashboard with suggestions for deals, please click here..</p>
-										</header>
-										<p></p>
-										<!--<ul class="actions">
-											<li><a href="#" class="button big">Learn More</a></li>
-										</ul>-->
-									</div>
-									<span class="image object">
-										<img src="images/How-much-data-is-enough.jpg" alt="" />
-									</span>
-								</section>
+![](images/How-much-data-is-enough.jpg)
 
-								<section>
-									<header class="main">
+The Insight Analysis was conducted in order to answer the question for potential investors, which houses should be bought and for what value they should be sold.
 
-									</header>
+It was done in Python using libraries like Pandas, Numpy, Streamlit, Folium, Seaborn. Also a dashboard to Heroku was deployed.
 
-									<!-- Content -->
+### Data
 
-										<p>The Insight Analysis was conducted in order to answer the question for potential investors, which houses should be bought and for what value they should be sold.</p>
-										<p>It was done in Python using libraries like Pandas, Numpy, Streamlit, Folium, Seaborn. Also a dashboard to Heroku was deployed.
-											<div class="col-4 col-12-medium">
-												<h3>Data</h3>
-												<p>Available data can be described according to the following table:</p>
-												<div class="row">
-													<div class="col-6 col-12-small">
+Available data can be described according to the following table:
 
-														<div class="table-wrapper">
-															<table class="alt">
-																<thead>
-																	<tr>
-																		<th>Name</th>
-																		<th>Description</th>
+Name
 
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>id</td>
-																		<td>Unique ID for each transaction.</td>
+Description
 
-																	</tr>
-																	<tr>
-																		<td>date</td>
-																		<td>Transaction Date.</td>
+id
 
-																	</tr>
-																	<tr>
-																		<td>price</td>
-																		<td>Transaction ammount.</td>
+Unique ID for each transaction.
 
-																	</tr>
-																	<tr>
-																		<td>bedrooms</td>
-																		<td>Number of bedrooms.</td>
+date
 
-																	</tr>
-																	<tr>
-																		<td>bathrooms</td>
-																		<td>Number of bathrooms. '.5' accounts for toilet.</td>
-																	</tr>
-																	<tr>
-																		<td>sqft_living</td>
-																		<td>Square footage living area.</td>
-																	</tr>
+Transaction Date.
 
-																	<tr>
-																		<td>sqft_lot</td>
-																		<td>Lot size.</td>
-																	</tr>
+price
 
-																	<tr>
-																		<td>floors</td>
-																		<td>Number of pavements.</td>
-																	</tr>
+Transaction ammount.
 
-																	<tr>
-																		<td>waterfront</td>
-																		<td>Means house has a view to waterfront.</td>
-																	</tr>
+bedrooms
 
-																	<tr>
-																		<td>view</td>
-																		<td>Score 1-4 on how good view is.</td>
-																	</tr>
+Number of bedrooms.
 
+bathrooms
 
+Number of bathrooms. '.5' accounts for toilet.
 
+sqft\_living
 
-																</tbody>
+Square footage living area.
 
-															</table>
-														</div>
-													</div>
-													<div class="col-6 col-12-small">
+sqft\_lot
 
-														<div class="table-wrapper">
-															<table class="alt">
-																<thead>
-																	<tr>
-																		<th>Name</th>
-																		<th>Description</th>
+Lot size.
 
-																	</tr>
-																</thead>
-																<tbody>
+floors
 
+Number of pavements.
 
-																	<tr>
-																		<td>grade</td>
-																		<td>Score on building construction and design. Eg 7 is average level, the higher the better.</td>
-																	</tr>
+waterfront
 
-																	<tr>
-																		<td>sqft_above</td>
-																		<td>House interior area above ground level.</td>
-																	</tr>
+Means house has a view to waterfront.
 
-																	<tr>
-																		<td>yr_build</td>
-																		<td>Year house was built.</td>
-																	</tr>
+view
 
-																	<tr>
-																		<td>yr_renovated</td>
-																		<td>When house was renovated.</td>
-																	</tr>
+Score 1-4 on how good view is.
 
-																	<tr>
-																		<td>zipcode</td>
-																		<td>Zipcode.</td>
-																	</tr>
+Name
 
-																	<tr>
-																		<td>lat</td>
-																		<td>Property latitude.</td>
-																	</tr>
+Description
 
-																	<tr>
-																		<td>lon</td>
-																		<td>Property lontitude.</td>
-																	</tr>
+grade
 
-																	<tr>
-																		<td>sqft_living15</td>
-																		<td>Size in square foot of the nearest 15 neighbors.</td>
-																	</tr>
+Score on building construction and design. Eg 7 is average level, the higher the better.
 
-																	<tr>
-																		<td>sqft_lot15</td>
-																		<td>Size of the land of the nearest 15 neighbors.</td>
-																	</tr>
+sqft\_above
 
-																	<tr>
-																		<td>bathrooms</td>
-																		<td>Number of bathrooms.</td>
-																	</tr>
+House interior area above ground level.
 
+yr\_build
 
+Year house was built.
 
-																</tbody>
+yr\_renovated
 
-															</table>
-														</div>
-													</div>
+When house was renovated.
 
+zipcode
 
-											</div>
-											<div class="col-4 col-12-medium">
-												<h3>The objective</h3>
-												<p>From the point of view of making an investment in a property thinking about resell value with little knowlodge of the local market it was developed a dashboard with a few insights to help the decision making proccess.</p>
-											</div>
-											<div class="col-4 col-12-medium">
-												<h3>The methodology</h3>
-												<p>Using the available database, it was done an exploratory analysis on the data,  in order to identify a good strategy for reselling.</p>
-												<p>The data provided only one year of transactions, which makes the analysis more limited. However it was still possible to generate interisting insights on the data.</p>
-											</div>
-											<div class="col-4 col-12-medium">
-												<h3>The data</h3>
-												<div class="col-4 col-12-medium">
-												<p><span class="image left"><img src="images/01 - price density.png" alt="" /></span>Price Density</p></div>
-												<div style="float: left" class="col-4 col-12-medium">
-												<p><span class="image left"><img src="images/02 - numerical variables.png" alt="" /></span>Price Density</p></div>
-												<div style="float: left" class="col-4 col-12-medium">
-												<p><span class="image left"><img src="images/02 - numerical variables.png" alt="" /></span>Price Density</p></div>
-												<div style="float: left" class="col-4 col-12-medium">
-												<p><span class="image left"><img src="images/02 - numerical variables.png" alt="" /></span>Price Density</p></div>
-												<div style="float: left" class="col-4 col-12-medium">
-												<p><span class="image left"><img src="images/02 - numerical variables.png" alt="" /></span>Price Density</p></div>
-												<div style="float: left" class="col-4 col-12-medium">
-												<p><span class="image left"><img src="images/02 - numerical variables.png" alt="" /></span>Price Density</p></div>
-												<div style="float: left" class="col-4 col-12-medium">
-												<p><span class="image left"><img src="images/02 - numerical variables.png" alt="" /></span>Price Density</p></div>
+Zipcode.
 
+lat
 
-												<!--
-												<div>
-												<div style="float: left">
-												<img src="https://loremflickr.com/320/240" />
-												</div>
-												<div>
-												Text content goes here
-												</div>
-											</div> -->
+Property latitude.
 
+lon
 
-											</div>
+Property lontitude.
 
-										</div>
-									</section>
+sqft\_living15
 
+Size in square foot of the nearest 15 neighbors.
 
+sqft\_lot15
 
-						</div>
-					</div>
+Size of the land of the nearest 15 neighbors.
 
-						</div>
-					</div>
+bathrooms
 
-			</div>
+Number of bathrooms.
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+### The objective
 
-	</body>
-</html>
+From the point of view of making an investment in a property thinking about resell value with little knowlodge of the local market it was developed a dashboard with a few insights to help the decision making proccess.
+
+### The methodology
+
+Using the available database, it was done an exploratory analysis on the data, in order to identify a good strategy for reselling.
+
+The data provided only one year of transactions, which makes the analysis more limited. However it was still possible to generate interisting insights on the data.
+
+### The data
+
+![](images/01 - price density.png)Price Density
+
+![](images/02 - numerical variables.png)Price Density
+
+![](images/02 - numerical variables.png)Price Density
+
+![](images/02 - numerical variables.png)Price Density
+
+![](images/02 - numerical variables.png)Price Density
+
+![](images/02 - numerical variables.png)Price Density
+
+![](images/02 - numerical variables.png)Price Density
