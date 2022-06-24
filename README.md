@@ -1,4 +1,4 @@
-Kings County Hose Sales    
+Kings County Hose Sales 
 
 [**House Sales in King County, USA** by Fulvio](index.html)
 
@@ -21,93 +21,31 @@ It was done in Python using libraries like Pandas, Numpy, Streamlit, Folium, Sea
 
 Available data can be described according to the following table:
 
-Name
+| Name | Description |
+| --- | --- |
+| id  | Unique ID for each transaction. |
+| date | Transaction Date. |
+| price | Transaction ammount. |
+| bedrooms | Number of bedrooms. |
+| bathrooms | Number of bathrooms. '.5' accounts for toilet. |
+| sqft_living | Square footage living area. |
+| sqft_lot | Lot size. |
+| floors | Number of pavements. |
+| waterfront | Means house has a view to waterfront. |
+| view | Score 1-4 on how good view is. |
 
-Description
-
-id
-
-Unique ID for each transaction.
-
-date
-
-Transaction Date.
-
-price
-
-Transaction ammount.
-
-bedrooms
-
-Number of bedrooms.
-
-bathrooms
-
-Number of bathrooms. '.5' accounts for toilet.
-
-sqft\_living
-
-Square footage living area.
-
-sqft\_lot
-
-Lot size.
-
-floors
-
-Number of pavements.
-
-waterfront
-
-Means house has a view to waterfront.
-
-view
-
-Score 1-4 on how good view is.
-
-Name
-
-Description
-
-grade
-
-Score on building construction and design. Eg 7 is average level, the higher the better.
-
-sqft\_above
-
-House interior area above ground level.
-
-yr\_build
-
-Year house was built.
-
-yr\_renovated
-
-When house was renovated.
-
-zipcode
-
-Zipcode.
-
-lat
-
-Property latitude.
-
-lon
-
-Property lontitude.
-
-sqft\_living15
-
-Size in square foot of the nearest 15 neighbors.
-
-sqft\_lot15
-
-Size of the land of the nearest 15 neighbors.
-
-bathrooms
-
-Number of bathrooms.
+| Name | Description |
+| --- | --- |
+| grade | Score on building construction and design. Eg 7 is average level, the higher the better. |
+| sqft_above | House interior area above ground level. |
+| yr_build | Year house was built. |
+| yr_renovated | When house was renovated. |
+| zipcode | Zipcode. |
+| lat | Property latitude. |
+| lon | Property lontitude. |
+| sqft_living15 | Size in square foot of the nearest 15 neighbors. |
+| sqft_lot15 | Size of the land of the nearest 15 neighbors. |
+| bathrooms | Number of bathrooms. |
 
 ### The objective
 
