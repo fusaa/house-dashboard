@@ -49,59 +49,41 @@ proccess.
 
 ### The methodology
 
-Using the available database, it was done an exploratory analysis on the
-data, in order to identify a good strategy for reselling.
+Using the available database, it was done an EDA (exploratory data analysis) on the
+data, in order to seek insights and understand the impact of each variable on the region.
 
-The data provided only one year of transactions, which made the
-analysis more limited. However it was still possible to generate
-interisting insights on the data.
 ![image](./MindMap.png)
   
 ### Data
 
+  The data provided only one year of transactions, which made the
+analysis more limited. However it was still possible to generate
+interisting insights on the data.
+  
+One important aspect that investors tend to think about is the price per square-foot. That feature has been engineered in the analysis.
+
 Available data can be described according to the following table:
 
-<div class="row">
 
-<div class="col-6 col-12-small">
+  
 
-<div class="table-wrapper">
-
-| Name         | Description                                    |
-| ------------ | ---------------------------------------------- |
-| id           | Unique ID for each transaction.                |
-| date         | Transaction Date.                              |
-| price        | Transaction ammount.                           |
-| bedrooms     | Number of bedrooms.                            |
-| bathrooms    | Number of bathrooms. '.5' accounts for toilet. |
-| sqft\_living | Square footage living area.                    |
-| sqft\_lot    | Lot size.                                      |
-| floors       | Number of pavements.                           |
-| waterfront   | Means house has a view to waterfront.          |
-| view         | Score 1-4 on how good view is.                 |
-
-</div>
-
-</div>
-
-<div class="col-6 col-12-small">
-
-<div class="table-wrapper">
-
-| Name           | Description                                                                              |
-| -------------- | ---------------------------------------------------------------------------------------- |
-| grade          | Score on building construction and design. Eg 7 is average level, the higher the better. |
-| sqft\_above    | House interior area above ground level.                                                  |
-| yr\_build      | Year house was built.                                                                    |
-| yr\_renovated  | When house was renovated.                                                                |
-| zipcode        | Zipcode.                                                                                 |
-| lat            | Property latitude.                                                                       |
-| lon            | Property lontitude.                                                                      |
-| sqft\_living15 | Size in square foot of the nearest 15 neighbors.                                         |
-| sqft\_lot15    | Size of the land of the nearest 15 neighbors.                                            |
-| bathrooms      | Number of bathrooms.                                                                     |
+| Name         | Description                                    | Name           | Description                                                                              |
+| ------------ | ---------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| id           | Unique ID for each transaction.                | grade          | Score on building construction and design. Eg 7 is average level, the higher the better. |
+| date         | Transaction Date.                              | sqft\_above    | House interior area above ground level.                                                  |
+| price        | Transaction ammount.                           | yr\_build      | Year house was built.                                                                    |
+| bedrooms     | Number of bedrooms.                            | yr\_renovated  | When house was renovated.                                                                |
+| bathrooms    | Number of bathrooms. '.5' accounts for toilet. | zipcode        | Zipcode.                                                                                 |
+| sqft\_living | Square footage living area.                    | lat            | Property latitude.                                                                       |
+| sqft\_lot    | Lot size.                                      | lon            | Property lontitude.                                                                      |
+| floors       | Number of pavements.                           | sqft\_living15 | Size in square foot of the nearest 15 neighbors.                                         |
+| waterfront   | Means house has a view to waterfront.          | sqft\_lot15    | Size of the land of the nearest 15 neighbors.                                            |
+| view         | Score 1-4 on how good view is.                 | bathrooms      | Number of bathrooms.                                                                     |
 
 
+## Numerical and Categorical attributes Correlation
+  
+  
 ### During the data explorarion a few hypothesis were generated:
   1) The square foot of newer houses are more expensive:
   Not true, they tend to be cheaper. The graph shows that properties that was a decline in price in the 50s and it has been kept from 60s onwards.
