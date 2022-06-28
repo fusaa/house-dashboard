@@ -23,7 +23,7 @@ USA. It includes homes sold between May 2014 and May 2015.
 If you want to jump right to the HEROKU dashboard with suggestions for
 deals, [please click here](https://house-analysis-dashboard.herokuapp.com/).
 
-You can also check the Jupyther notebook for the project [here](https://github.com/fusaa/house-dashboard).
+You can also check the Jupyther notebook for the project [here](https://github.com/fusaa/house-dashboard/blob/main/0%20-%20king%20county.ipynb).
 </div>
 
 </div>
