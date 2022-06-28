@@ -65,8 +65,6 @@ One important aspect that investors tend to think about is the price per square-
 Available data can be described according to the following table:
 
 
-  
-
 | Name         | Description                                    | Name           | Description                                                                              |
 | ------------ | ---------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------- |
 | id           | Unique ID for each transaction.                | grade          | Score on building construction and design. Eg 7 is average level, the higher the better. |
@@ -79,6 +77,10 @@ Available data can be described according to the following table:
 | floors       | Number of pavements.                           | sqft\_living15 | Size in square foot of the nearest 15 neighbors.                                         |
 | waterfront   | Means house has a view to waterfront.          | sqft\_lot15    | Size of the land of the nearest 15 neighbors.                                            |
 | view         | Score 1-4 on how good view is.                 | bathrooms      | Number of bathrooms.                                                                     |
+|              |                                                | condition      | An index from 1 to 5 on the condition of the apartment.                                  |
+
+
+
 
 
 ## Numerical and Categorical attributes Correlation
@@ -128,6 +130,28 @@ Waterfront properties tend to have a high view rating, as well as the number of 
 
 
 ![image](https://user-images.githubusercontent.com/66756007/175942914-7fcdaeea-f7ad-4bc9-a0eb-c508d2f18659.png)
+
+
+## Region Ranking
+In order to seek the best regions to invest it has been applied a ranking system. First the top 15 regions in terms of number of transactions were selected, followed the top 10 in price, and finally the next top 5 region in terms of condition for the properties. The condition has been considered in order to avoid potential issues for investors.
+
+The chosen region given the criteria was zipcode 98133 (Shoreline).
+![image](https://user-images.githubusercontent.com/66756007/176123662-a818c606-a31c-4c23-8fa5-7ea7a0c5ceda.png)
+
+The region has had 494 properties transactioned during the period, has a median price per square foot of USD245,21. The median lot size is 7.305 sqft, and the mean condition 3,54. And important to mention the median price for the properties are USD375.000,00 which puts the property right in the price range of properties most transactioned.
+
+## Potential Deals
+
+A potential strategy could be acquiring properties under the median price per square foot, and reselling them over that. Say an investor buys a house 20% under the median price, that house could be resold on the median with a 20% gain, or if the investor gets a better deal, 10% over, so that would make a profit of 30%. However it is always important to check on the peculiarities of each deal. There were 213 properties in the time period transactioned under 
+the 20% lower mark of the median price. If an investing party were to buy all of these properties the transaction ammount would be USD84.149.567,00. While the potential sell USD109.394.437,10 on a 30% higher price. That would make a possible profit of USD25.244.870,10. Of course we are considering the bulk of the area, not considering an aggresive buy would drive prices up. However a for a small investor that would be a possible strategy.
+
+## Other Regions Top 5 Regions
+
+Even though we have chosen a single region, the other top 5 regions could yield great deals as well. Check the summary for the other 5 top regions:
+
+![image](https://user-images.githubusercontent.com/66756007/176127715-cfaccd73-929c-46c4-9c8c-7beb25c7d4ab.png)
+
+
 
 
 
