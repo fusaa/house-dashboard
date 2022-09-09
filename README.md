@@ -145,9 +145,9 @@ The region has had 494 properties transactioned during the period, has a median 
 A potential strategy could be acquiring properties under the median price per square foot, and reselling them over that. Say an investor buys a house 20% under the median price, that house could be resold on the median with a 20% gain, or if the investor gets a better deal, 10% over, so that would make a profit of 30%. However it is always important to check on the peculiarities of each deal. There were 213 properties in the time period transactioned under 
 the 20% lower mark of the median price. If an investing party were to buy all of these properties the transaction ammount would be USD84.149.567,00. While the potential sell USD109.394.437,10 on a 30% higher price. That would make a possible profit of USD25.244.870,10. Of course we are considering the bulk of the area, not considering an aggresive buy would drive prices up. However a for a small investor that would be a possible strategy.
 
-## Other Regions Top 5 Regions
+## Other Top Regions
 
-Even though we have chosen a single region, the other top 5 regions could yield great deals as well. Check the summary for the other 5 top regions:
+Even though we have chosen a single region, there are other regions could yield great deals. Check the summary:
 
 ![image](https://user-images.githubusercontent.com/66756007/176127715-cfaccd73-929c-46c4-9c8c-7beb25c7d4ab.png)
 
