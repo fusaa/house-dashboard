@@ -18,7 +18,7 @@ The dataset comprehends house sales prices for King County, Seattle, USA. It inc
 
 If you want to jump right to the Streamlit - HEROKU dashboard with suggestions for deals, please [please click here](https://house-analysis-dashboard.herokuapp.com/).
 
-You can also check the Jupyther notebook for the project [here](https://github.com/fusaa/house-dashboard/blob/main/0%20-%20king%20county.ipynb).
+You can also check the Jupyter notebook for the project [here](https://github.com/fusaa/house-dashboard/blob/main/0%20-%20king%20county.ipynb).
 
 
 The Insight Analysis was conducted in order to answer the question for potential investors about which houses should be bought and for what value they should be sold.
