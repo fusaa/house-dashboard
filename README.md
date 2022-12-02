@@ -16,7 +16,7 @@ This project was carried out using data available on the [kaggle](https://www.ka
 
 The dataset comprehends house sales prices for King County, Seattle, USA. It includes homes sold between May 2014 and May 2015.
 
-If you want to jump right to the Streamlit - HEROKU dashboard with suggestions for deals, please [please click here](https://house-analysis-dashboard.herokuapp.com/).
+If you want to jump right to the Streamlit -  dashboard with suggestions for deals, please [please click here](https://fu-seattle.streamlit.app/).
 
 You can also check the Jupyter notebook for the project [here](https://github.com/fusaa/house-dashboard/blob/main/0%20-%20king%20county.ipynb).
 
@@ -28,7 +28,7 @@ The Insight Analysis was conducted in order to answer the question for potential
 </div>
 
 <div class="section">
-It was done in Python using libraries like Pandas, Numpy, Streamlit, Folium, and Seaborn. Also, a dashboard was deployed using Heroku was deployed.
+It was done in Python using libraries like Pandas, Numpy, Streamlit, Folium, and Seaborn. Also, a dashboard was deployed originally using Heroku however the deployment was migrated to streamlit.io.
 
 <div class="col-4 col-12-medium">
 
@@ -133,6 +133,9 @@ Even though we have chosen a single region, other regions could yield great deal
 
 
 
+---
+Outdated old dashboard url: https://house-analysis-dashboard.herokuapp.com/
+New dashboard url: https://fu-seattle.streamlit.app/
 
 
 
