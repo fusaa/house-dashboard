@@ -49,9 +49,9 @@ def main(data, geofile):
     min_price = int(data['price'].min())
     max_price = int(data['price'].max())
     st.sidebar.subheader('Minimun property price')
-    min_price = st.sidebar.slider('Min Price', min_price,max_price,min_price)
+    min_price = st.sidebar.slider('Min Price', min_price,max_price,min_price, 1000)
     st.sidebar.subheader('Maximum property price')
-    max_price = st.sidebar.slider('Max Price', min_price,max_price,max_price)
+    max_price = st.sidebar.slider('Max Price', min_price,max_price,max_price, 1000)
     data = data.loc[(data['price'] <= max_price) & (data['price'] >= min_price)]
 
     min_cond = int(data['condition'].min())
@@ -98,44 +98,31 @@ def main(data, geofile):
     # 4 - 4th section, column 1
     c1.header('Portfolio Density')
 
-    # df = data.sample(100)
+    # df = data.sample(100)  # testing  sample
 
     density_map = folium.Map(location = [data['lat'].mean(),
                                          data['long'].mean()],
                              default_zoom_start=15)
 
     marker_cluster = MarkerCluster().add_to(density_map)  # start class for pinmarks
+    #"{:,}".format(num)
     for name, row in data.iterrows():
-
-
-        html = 'Sold USD{0} on: {1}. <br> Features: {2} sqft,<br> {3} bedrooms,<br> {4} bathrooms,<br> {5} $/sqft region, <br> {6} $/sqft this property,  year built: <br> {7}, condition: {8} <br> Transaction ID:{9}'.format(
-            row['price'], \
+        html = 'Sold USD {0}<br> Date: {1}, <br>{2} sqft,<br>{3} bedrooms,<br>{4} bathrooms,<br>{5} $/sqft region,<br>{6} $/sqft this property,<br>{7} year built,<br>{8} condition,<br>{9} Transaction ID.'.format(
+            '{:,.2f}'.format(row['price']), \
             row['date'],
             row['sqft_living'],
             row['bedrooms'],
             row['bathrooms'],
-            row['median_region_price_sqft'],
-            row['aux_sqft_living_price'],
+            '{:.2f}'.format(row['median_region_price_sqft']),
+            '{:.2f}'.format(row['aux_sqft_living_price']),
             row['yr_built'],
             row['condition'],
             row['id'])
-
 
         iframe = folium.IFrame(html, width=200, height=250)
         popup = folium.Popup(iframe, max_width=200)
         folium.Marker([row['lat'], row['long']], \
                       popup=popup).add_to(marker_cluster)
-        # folium.Marker( [row['lat'], row['long'] ],\
-        #                popup='Sold USD{0} on: {1}. \n Features: \n{2} sqft, {3} bedrooms, {4} bathrooms,{5} $/sqft region, {6} $/sqft this property,  year built: {7}, condition: {8}\nTransaction ID:{9}'.format( row['price'],\
-        #                                  row['date'],
-        #                                  row['sqft_living'],
-        #                                  row['bedrooms'],
-        #                                  row['bathrooms'],
-        #                                  row['median_region_price_sqft'],
-        #                                  row['aux_sqft_living_price'],
-        #                                  row['yr_built'],
-        #                                  row['condition'],
-        #                                  row['id']) ).add_to( marker_cluster )
 
     with c1:  # with - streamlit requirement rule
         folium_static(density_map) #
@@ -217,8 +204,8 @@ def load_geofile(url):
 if __name__ == '__main__':
     st.set_page_config(layout='wide')
     path = './datasets/kc_house_data.csv'
-    url_geofile = 'https://opendata.arcgis.com/datasets/83fc2e72903343aabff6de8cb445b81c_2.geojson'
-
+    # url_geofile = 'https://opendata.arcgis.com/datasets/83fc2e72903343aabff6de8cb445b81c_2.geojson'
+    url_geofile = 'https://services2.arcgis.com/I7NQBinfvOmxQbXs/arcgis/rest/services/sps_geo_zone_ES_2021_2022/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
     data = load_data(path)
     geofile = load_geofile(url_geofile)
 
