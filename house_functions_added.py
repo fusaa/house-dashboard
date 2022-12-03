@@ -264,8 +264,8 @@ def load_geofile(url):
 
 if __name__ == '__main__':
     st.set_page_config(layout='wide')
-    #path = './datasets/kc_house_data.csv'
-    path = '.\datasets\kc_house_data.csv'
+    path = './datasets/kc_house_data.csv'
+    #path = '.\datasets\kc_house_data.csv'
     # url_geofile = 'https://opendata.arcgis.com/datasets/83fc2e72903343aabff6de8cb445b81c_2.geojson'  # original url
     # url_geofile = 'https://services2.arcgis.com/I7NQBinfvOmxQbXs/arcgis/rest/services/sps_geo_zone_ES_2021_2022/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'  # no zip data
     #url_geofile = './datasets/83fc2e72903343aabff6de8cb445b81c_2.geojson'
