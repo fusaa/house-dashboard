@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_folium import folium_static
 
 import folium
-from folium.plugins import MarkerCluster
+from folium.plugins import MarkerCluster, FastMarkerCluster
 
 import pandas as pd
 import geopandas
@@ -24,7 +24,10 @@ def features(data):
     data['difference_median_of_region'] = (((data['aux_sqft_living_price'] / data['median_region_price_sqft'])-1)*100)
     return data
 
+def _update_slider(slider, value):
+    st.session_state[slider] = value
 
+# @profile
 def main(data, geofile):
 
     # Sidebars
@@ -37,34 +40,51 @@ def main(data, geofile):
     st.sidebar.title('Map Options')  # cria subtitulo na sessao do sidebar.
 
     data['date'] = pd.to_datetime( data['date']).dt.strftime('%Y-%m-%d' )
+    
 
-    min_year_built = int( data['yr_built'].min() )
-    max_year_built = int( data['yr_built'].max() )
+    
+    f_min_year_built = int( data['yr_built'].min() )
+    f_max_year_built = int( data['yr_built'].max() )
+
+
     st.sidebar.subheader('Select Min Year Built')
-    f_min_year_built = st.sidebar.slider('Yr built', min_year_built,max_year_built,min_year_built)
+    f_min_year_built = st.sidebar.slider('Yr built', f_min_year_built, f_max_year_built,f_min_year_built, key='yr_built_min')
+        
     st.sidebar.subheader('Select Max Year Built')
-    f_max_year_built = st.sidebar.slider('Yr built', min_year_built,max_year_built,max_year_built)
+    f_max_year_built = st.sidebar.slider('Yr built', f_min_year_built, f_max_year_built,f_max_year_built)
+ 
+    
     data = data.loc[(data['yr_built'] <= f_max_year_built) & (data['yr_built'] >= f_min_year_built)]
+    
 
     min_price = int(data['price'].min())
     max_price = int(data['price'].max())
+    
     st.sidebar.subheader('Minimun property price')
     min_price = st.sidebar.slider('Min Price', min_price,max_price,min_price, 1000)
+    
     st.sidebar.subheader('Maximum property price')
     max_price = st.sidebar.slider('Max Price', min_price,max_price,max_price, 1000)
+    
     data = data.loc[(data['price'] <= max_price) & (data['price'] >= min_price)]
 
+    
     min_cond = int(data['condition'].min())
     max_cond = int(data['condition'].max())
-    st.sidebar.subheader('Minimun Condition')
-    min_cond = st.sidebar.slider('Min Condition', min_cond,max_cond,min_cond)
-    st.sidebar.subheader('Maximum Condition')
-    max_cond = st.sidebar.slider('Min Condition', min_cond,max_cond,max_cond)
-    data = data.loc[(data['condition'] <= max_cond) & (data['condition'] >= min_cond)]
+    
+
+    # st.write("This column is a constant of value `minValueToken`")
+
+    st.sidebar.subheader('Condition Range')
+    min_cond = st.sidebar.slider('Interval', 1, 5, [1,5])
+    #st.sidebar.subheader('Maximum Condition')
+    #max_cond = st.sidebar.slider('Min Condition', min_cond,max_cond,max_cond, key = 'cond_max')
+    data = data.loc[(data['condition'] <= min_cond[1]) & (data['condition'] >= min_cond[0])]
+    #data = data.loc[(data['condition'] <= max_cond) & (data['condition'] >= min_cond)]
 
     st.sidebar.subheader('Difference lower or higher than the mean for region')
     agree = st.sidebar.checkbox('Activate this for median % filter on sqft prices')
-    mean_comp = st.sidebar.slider('Percentage Difference(don´t forget to check the box above):', -40, 40, 0, step = 5)
+    mean_comp = st.sidebar.slider('Percentage Difference(don´t forget to check the box above and to set all above values to the maximum):', -40, 40, 0, step = 5)
     if agree:
         if mean_comp > 0:
             data = data.loc[data['difference_median_of_region'] >=  float(mean_comp)]
@@ -104,25 +124,66 @@ def main(data, geofile):
                                          data['long'].mean()],
                              default_zoom_start=15)
 
-    marker_cluster = MarkerCluster().add_to(density_map)  # start class for pinmarks
-    #"{:,}".format(num)
-    for name, row in data.iterrows():
-        html = 'Sold USD {0}<br> Date: {1}, <br>{2} sqft,<br>{3} bedrooms,<br>{4} bathrooms,<br>{5} $/sqft region,<br>{6} $/sqft this property,<br>{7} year built,<br>{8} condition,<br>{9} Transaction ID.'.format(
-            '{:,.2f}'.format(row['price']), \
-            row['date'],
-            row['sqft_living'],
-            row['bedrooms'],
-            row['bathrooms'],
-            '{:.2f}'.format(row['median_region_price_sqft']),
-            '{:.2f}'.format(row['aux_sqft_living_price']),
-            row['yr_built'],
-            row['condition'],
-            row['id'])
+    #marker_cluster = MarkerCluster().add_to(density_map)  # start class for pinmarks
+    lats = data['lat'].tolist()
+    longs = data['long'].tolist()
+    #lat_longd = list(map(list, zip(lats,longs))) 
+    ii = data['yr_built'].tolist()
+    
+    # data[['lat','long','date']].values.tolist()
+    callback = ('function (row) {' 
+                'var marker = L.marker(new L.LatLng(row[0], row[1]), {color: "red"});'
+                'var icon = L.AwesomeMarkers.icon({'
+                "icon: 'info-sign',"
+                "iconColor: 'white',"
+                "markerColor: 'green',"
+                "prefix: 'glyphicon',"
+                "extraClasses: 'fa-rotate-0'"
+                    '});'
+                'marker.setIcon(icon);'
+                "var popup = L.popup({maxWidth: '300'});"
+                "const display_text = {text: row[2]};"
+                "var mytext = $(`<div id='mytext' class='display_text' style='width: 100.0%; height: 100.0%;'> ${display_text.text}</div>`)[0];"
+                "popup.setContent(mytext);"
+                "marker.bindPopup(popup);"
+                'return marker};')
 
-        iframe = folium.IFrame(html, width=200, height=250)
-        popup = folium.Popup(iframe, max_width=200)
-        folium.Marker([row['lat'], row['long']], \
-                      popup=popup).add_to(marker_cluster)
+    
+    data['html'] =  data.apply(lambda row: 'Sold USD {0}<br> Date: {1}, <br>Sqft: {2},<br>Bedrooms {3},<br>Bathrooms {4},<br><br>Region $/sqft: {5},<br>This property $/sqft {6},<br><br>Year Built: {7},<br>Condition: {8},<br>Transaction ID: {9}.'.format(
+        '{:,.2f}'.format(row['price']), \
+        row['date'], \
+        row['sqft_living'], \
+        row['bedrooms'], \
+        row['bathrooms'], \
+        '{:.2f}'.format(row['median_region_price_sqft']), \
+        '{:.2f}'.format(row['aux_sqft_living_price']), \
+        row['yr_built'], \
+        row['condition'], \
+        row['id']),
+            axis = 1)
+    marker_cluster = FastMarkerCluster(data = data[['lat','long','html']].values.tolist(), callback=callback).add_to(density_map)  # start class for pinmarks 
+    
+    
+
+    # return 1
+
+ #   for name, row in data.iterrows():
+ #       html = 'Sold USD {0}<br> Date: {1}, <br>{2} sqft,<br>{3} bedrooms,<br>{4} bathrooms,<br>{5} $/sqft region,<br>{6} $/sqft this property,<br>{7} year built,<br>{8} condition,<br>{9} Transaction ID.'.format(
+ #           '{:,.2f}'.format(row['price']), \
+ #           row['date'],
+ #           row['sqft_living'],
+ #           row['bedrooms'],
+ #           row['bathrooms'],
+ #           '{:.2f}'.format(row['median_region_price_sqft']),
+ #           '{:.2f}'.format(row['aux_sqft_living_price']),
+ #           row['yr_built'],
+ #           row['condition'],
+ #           row['id'])
+
+ #       iframe = folium.IFrame(html, width=200, height=250)
+ #       popup = folium.Popup(iframe, max_width=200)
+ #       folium.Marker([row['lat'], row['long']], \
+ #                     popup=popup).add_to(marker_cluster)
 
     with c1:  # with - streamlit requirement rule
         folium_static(density_map) #
@@ -132,7 +193,7 @@ def main(data, geofile):
 
     df = data[['price','zipcode']].groupby('zipcode').mean().reset_index()
     df.columns = ['ZIP', 'PRICE']
-    # df = df.sample(11)  # limited for faster testing
+    # df = df.sample(33)  # limited for faster testing
 
     geofile = geofile[geofile['ZIP'].isin( df['ZIP'].tolist() )] # filtering dataset with info in sample list
 
@@ -203,10 +264,12 @@ def load_geofile(url):
 
 if __name__ == '__main__':
     st.set_page_config(layout='wide')
-    path = './datasets/kc_house_data.csv'
+    #path = './datasets/kc_house_data.csv'
+    path = '.\datasets\kc_house_data.csv'
     # url_geofile = 'https://opendata.arcgis.com/datasets/83fc2e72903343aabff6de8cb445b81c_2.geojson'  # original url
     # url_geofile = 'https://services2.arcgis.com/I7NQBinfvOmxQbXs/arcgis/rest/services/sps_geo_zone_ES_2021_2022/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'  # no zip data
-    url_geofile = './datasets/83fc2e72903343aabff6de8cb445b81c_2.geojson'
+    #url_geofile = './datasets/83fc2e72903343aabff6de8cb445b81c_2.geojson'
+    url_geofile = '.\datasets\83fc2e72903343aabff6de8cb445b81c_2.geojson'
     data = load_data(path)
     geofile = load_geofile(url_geofile)
 
