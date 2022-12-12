@@ -16,11 +16,13 @@ This project was carried out using data available on the [kaggle](https://www.ka
 
 The dataset comprehends house sales prices for King County, Seattle, USA. It includes homes sold between May 2014 and May 2015.
 
+### [Streamlit Dashboard](https://fu-seattle.streamlit.app/)
 If you want to jump right to the Streamlit -  dashboard with suggestions for deals, please [please click here](https://fu-seattle.streamlit.app/).
 
+### [Jupyter Notebook](https://github.com/fusaa/house-dashboard/blob/main/0%20-%20king%20county.ipynb)
 You can also check the Jupyter notebook for the project [here](https://github.com/fusaa/house-dashboard/blob/main/0%20-%20king%20county.ipynb).
 
-
+## 
 The Insight Analysis was conducted in order to answer the question for potential investors about which houses should be bought and for what value they should be sold.
 
 </div>
@@ -33,9 +35,6 @@ It was done in Python using libraries like Pandas, Numpy, Streamlit, Folium, and
 <div class="col-4 col-12-medium">
 
 
-### The objective
-
-From the point of view of investing in a property, thinking about resell value with little knowledge of the local market, to make things easier for potential investors, a dashboard with a few insights to help the decision-making proccess was deployed.
 
 ### The methodology
 
@@ -45,7 +44,7 @@ An EDA (exploratory data analysis) was done using the available database to seek
   
 ### Data
 
-The data provided only one year of transactions, which limited the analysis. However, it was still possible to generate interesting insights into the data.
+The data provided only one year of transactions, which limited the analysis. However, it was still possible to generate interesting insights.
 
 One crucial aspect that investors tend to think about is the price per square foot. That feature has been engineered in the analysis.
 
